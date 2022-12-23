@@ -1,0 +1,39 @@
+name: my-wordpress-app-lamp
+version: "3.9"
+services:
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+
+  wordpress:
+    restart: on-failure
+    image: wordpress:latest
+    volumes:
+      - ./.docker/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./wordpress/wp-content:/var/www/html/wp-content
+
+    ports:
+      - 80:80
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=user
+      - WORDPRESS_DB_PASSWORD=user
+      - WORDPRESS_DB_NAME=wordpress
+
+  phpmyadmin:
+    restart: on-failure
+    image: phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    environment:
+      - PMA_USER=user
+      - PMA_PASSWORD=user
