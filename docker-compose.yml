@@ -13,7 +13,7 @@ services:
 
   wordpress:
     restart: on-failure
-    image: wordpress:latest
+    image: wordpress:6-php8.1-apache
     volumes:
       - ./.docker/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./wordpress/wp-content:/var/www/html/wp-content
@@ -36,3 +36,9 @@ services:
     environment:
       - PMA_USER=user
       - PMA_PASSWORD=user
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
