@@ -17,7 +17,7 @@ Docker Compose project to deploy development environment for WordPress. Configur
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/inplayo-com/docker-compose-lamp-wordpress.git
+git clone https://github.com/dendrofen/docker-compose-wordpress-lamp.git
 ```
 
 ### 2. Docker compose
