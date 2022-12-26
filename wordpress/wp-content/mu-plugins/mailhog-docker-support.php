@@ -39,7 +39,7 @@ class MailhogDockerSupport
         $phpmailer->SMTPAutoTLS = false;
         $phpmailer->Host = 'mailhog';
         $phpmailer->Port = '1025';
-        $phpmailer->SMTPDebug = 2;
+        // $phpmailer->SMTPDebug = 2;
     }
 
     public function from()
